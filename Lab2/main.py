@@ -30,8 +30,8 @@ def MxSub(a, b):
 
 
 def dncMxMultiply(a, b):
-    if len(a) == 1:
-        return [[a[0][0] * b[0][0]]]
+    if len(a) == 2:
+        return naiveMxMult(a, b)
     mid = len(a) // 2
     a1 = a[:mid, :mid]  # Top-left corner, a
     a2 = a[:mid, mid:]  # Top-right corner, a
@@ -64,8 +64,8 @@ def dncMxMultiply(a, b):
 
 def strassen_multiply(A, B):
     n = len(A)
-    if n == 1:
-        return [[A[0][0] * B[0][0]]]
+    if n == 2:
+        return naiveMxMult(A, B)
     mid = n // 2
 
     A11 = A[:mid, :mid]
@@ -127,9 +127,6 @@ def runTests(repeats):
 
 
 def main():
-
     runTests(10)
-
 if __name__ == "__main__":
     main()
-
