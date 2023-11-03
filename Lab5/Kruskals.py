@@ -3,6 +3,27 @@ import random
 import DisjointSet
 
 
+def kruskalMST(g):
+    n = len(g)
+    ds = DisjointSet.DisjointSet()
+    for i in range(n):
+        ds.makeSet(i)
+    e = []
+    for i in range(n):
+        for j in range(i+1, n):
+            if g[i][j] != 0:
+                e.append((i, j, g[i][j]))
+    e.sort(key=lambda x: x[2])  # sort based on weight, or e[2]
+
+    mst = []
+    for ed in e:
+        u, v, w = e
+        if ds.findSet(u) != ds.findSet(v):
+            mst.append((u, v, w))
+            ds.union(u, v)
+    return mst
+
+
 def getRandomGraph(n, m, maxWeight):
     a = np.zeros((n, n), dtype=int)
     count = 0
@@ -18,8 +39,9 @@ def getRandomGraph(n, m, maxWeight):
         j = random.randint(0, n)
     return a
 
+
 def graph2DisjointSets(a):
     ds = DisjointSet.DisjointSet()
     for i in range(len(a)):
-        ds.makeSet(a[i][i])
+        ds.makeSet(i)
     return ds
