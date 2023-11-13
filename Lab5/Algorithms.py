@@ -1,6 +1,11 @@
+import PriorityQueue
 import numpy as np
 import random
 import DisjointSet
+
+
+def primMST(graph):
+    pass
 
 
 def kruskalMST(g):
@@ -14,10 +19,9 @@ def kruskalMST(g):
             if g[i][j] != 0:
                 e.append((i, j, g[i][j]))
     e.sort(key=lambda x: x[2])  # sort based on weight, or e[2]
-
     mst = []
     for ed in e:
-        u, v, w = e
+        u, v, w = ed
         if ds.findSet(u) != ds.findSet(v):
             mst.append((u, v, w))
             ds.union(u, v)
