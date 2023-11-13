@@ -31,16 +31,18 @@ def kruskalMST(g):
 def getRandomGraph(n, m, maxWeight):
     a = np.zeros((n, n), dtype=int)
     count = 0
-    i = random.randint(0, n)
-    j = random.randint(0, n)
+    i = random.randint(0, n - 1)
+    j = random.randint(0, n - 1)
     while count < m:
         if i == j or a[i][j] == maxWeight:
+            i = random.randint(0, n - 1)
+            j = random.randint(0, n - 1)
             continue
         a[i][j] += 1
         a[j][i] += 1
         count += 1
-        i = random.randint(0, n)
-        j = random.randint(0, n)
+        i = random.randint(0, n - 1)
+        j = random.randint(0, n - 1)
     return a
 
 
